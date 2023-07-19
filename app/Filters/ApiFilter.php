@@ -1,35 +1,16 @@
 <?php
 
-namespace App\Filters\V1;
+namespace App\Filters;
 
 use Illuminate\Http\Request;
 
-class CustomersFilter {
+class ApiFilter {
 
-    // List columns and allowable query operators
-    protected $safeParms = [
-        'name' => ['eq'],
-        'type' => ['eq'],
-        'email' => ['eq'],
-        'address' => ['eq'],
-        'city' => ['eq'],
-        'state' => ['eq'],
-        'postaclCode' => ['eq', 'gt', 'lt']
-    ];
+    protected $safeParms = [];
 
-    // Translate JSON name to database name 
-    protected $columnMap = [
-        'postalCode' => 'postal_code'
-    ];
+    protected $columnMap = [];
 
-    // Translate operators to actual database notation
-    protected $operatorMap = [
-        'eq' => '=',
-        'lt' => '<',
-        'lte' => '<=',
-        'gt' => '>',
-        'gte' => '>='
-    ];
+    protected $operatorMap = [];
 
     public function transform(Request $request) {
         $eloQuery = []; // Array to pass to eloquent
