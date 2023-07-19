@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\V1;
+namespace App\Filters\V1;
 
 use Illuminate\Http\Request;
 
-class CustomerQuery {
+class CustomersFilter {
 
     // List columns and allowable query operators
     protected $safeParms = [
