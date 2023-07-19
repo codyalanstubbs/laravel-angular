@@ -19,12 +19,12 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $filter = new CustomersFilter();
-        $queryItems = $filter->transform($request); // [['columnn', 'operator', 'value']]
+        $filterItems = $filter->transform($request); // [['columnn', 'operator', 'value']]
 
-        if (count($queryItems) == 0) {
+        if (count($filterItems) == 0) {
             return new CustomerCollection(Customer::paginate());
         } else {
-            $customers = Customer::where($queryItems)->paginate();
+            $customers = Customer::where($filterItems)->paginate();
             
             return new CustomerCollection($customers->appends($request->query()));
         }
